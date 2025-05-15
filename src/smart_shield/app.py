@@ -1,5 +1,7 @@
 from flask import Flask
 
+from configs import DEBUG, SECRET_KEY
+
 
 def create_app(test: bool = False):
     """Created application on Flask"""
@@ -10,7 +12,8 @@ def create_app(test: bool = False):
         _db = ""
 
     app = Flask(__name__, instance_relative_config=True)
-    app.config["SEKRET_KEY"] = ""
+    app.config["SEKRET_KEY"] = SECRET_KEY
+    app.config["DEBUG"] = DEBUG
     app.config["SQLALCHEMY_DATABASE_URI"] = _db
 
     @app.route("/", methods=["GET"])
