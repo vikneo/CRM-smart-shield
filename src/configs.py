@@ -2,8 +2,6 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
 
 load_dotenv()
 
@@ -27,10 +25,3 @@ try:
         database = f"{DB_BASE_URL}:///{BASE_DIR}/{DB_NAME}"
 except KeyError:
     database = f"{DB_BASE_URL}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-
-
-class Base(DeclarativeBase):
-    pass
-
-
-db = SQLAlchemy(model_class=Base)

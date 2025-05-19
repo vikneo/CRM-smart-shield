@@ -1,7 +1,7 @@
 from flask import Flask
 from sqlalchemy import inspect
 
-from configs import DEBUG, SECRET_KEY, database, db
+from configs import DEBUG, SECRET_KEY, database
 
 
 def create_app(test: bool = False):
@@ -16,6 +16,8 @@ def create_app(test: bool = False):
     app.config["SEKRET_KEY"] = SECRET_KEY
     app.config["DEBUG"] = DEBUG
     app.config["SQLALCHEMY_DATABASE_URI"] = _db
+
+    from .models import db
 
     db.init_app(app)
 
