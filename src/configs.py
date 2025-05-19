@@ -19,3 +19,9 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
+
+try:
+    if os.environ["TERM_PROGRAM"] == "vscode":
+        database = f"{DB_BASE_URL}:///{BASE_DIR}/{DB_NAME}"
+except KeyError:
+    database = f"{DB_BASE_URL}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
